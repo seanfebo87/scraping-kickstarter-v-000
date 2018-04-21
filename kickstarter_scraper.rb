@@ -1,11 +1,9 @@
 require 'nokogiri'
 require 'pry'
-require 'open-uri'
 
 def create_project_hash
-  html = 'https://www.jmbullion.com/charts/silver-prices/#'
-  kickstarter = Nokogiri::HTML(open(html))
-  binding.pry
+  html = File.read('fixtures/kickstarter.html')
+  kickstarter = Nokogiri::HTML(html)
   projects = {}
   kickstarter.css("li.project.grid_4").each do |project|
     title = project.css("h2.bbcard_name strong a").text
