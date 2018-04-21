@@ -3,8 +3,8 @@ require 'pry'
 require 'open-uri'
 
 def create_project_hash
-  html = File.read('https://www.jmbullion.com/charts/silver-prices/#')
-  kickstarter = Nokogiri::HTML(html)
+  html = 'https://www.jmbullion.com/charts/silver-prices/#'
+  kickstarter = Nokogiri::HTML(open(html))
   binding.pry
   projects = {}
   kickstarter.css("li.project.grid_4").each do |project|
